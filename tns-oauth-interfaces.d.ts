@@ -68,3 +68,8 @@ export interface ITnsOAuthOptionsSalesforce extends ITnsOAuthOptions {
     redirectUri: string;
     responseType: string;
 }
+
+export interface ITnsOAuthOptionsFitbit extends ITnsOAuthOptions {
+    clientSecret: string;
+    redirectUri: string;
+}

@@ -10,6 +10,7 @@ import { AuthHelperGoogle } from './auth-helper-google';
 import { AuthHelperUaa } from './auth-helper-uaa';
 import { AuthHelperLinkedIn } from './auth-helper-linkedin';
 import { AuthHelperSalesforce } from './auth-helper-salesforce';
+import { AuthHelperFitbit } from './auth-helper-fitbit';
 
 import * as TnsOAuth from './tns-oauth-interfaces';
 
@@ -125,6 +126,23 @@ export function initSalesforce(options: TnsOAuth.ITnsOAuthOptionsSalesforce): Pr
     });
 }
 
+export function initFitbit(options: TnsOAuth.ITnsOAuthOptionsFitbit): Promise<any> {
+    return new Promise(function (resolve, reject) {
+        try {
+            if (instance !== null) {
+                reject("You already ran init");
+                return;
+            }
+
+            instance = new AuthHelperFitbit(options.clientId, options.clientSecret, options.redirectUri, options.scope);
+            resolve(instance);
+        } catch (ex) {
+            console.log("Error in AuthHelperFitbit.init: " + ex);
+            reject(ex);
+        }
+    });
+}
+
 
 
 
@@ -168,5 +186,3 @@ export function ensureValidToken(): Promise<string> {
     });
 
 }
-
-
